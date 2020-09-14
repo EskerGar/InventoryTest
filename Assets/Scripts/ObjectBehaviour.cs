@@ -1,13 +1,17 @@
 ﻿using UnityEngine;
+using static IdPool;
+using static ObjectConfigs;
 
 [RequireComponent(typeof(Rigidbody), typeof(PickUp))]
 public class ObjectBehaviour : MonoBehaviour
 {
     [SerializeField] private ObjectConfigs configs;
 
-    public ObjectConfigs.ObjectTypes Type { get; private set; }
-    private PickUp _pickUp;
+    public ObjectTypes Type { get; private set; }
+    public int ID { get; private set; }
+    public ObjectConfigs GetConfigs => configs;
     
+    private PickUp _pickUp;
 
     private void Start()
     {
@@ -15,6 +19,7 @@ public class ObjectBehaviour : MonoBehaviour
         _pickUp = GetComponent<PickUp>();
         gameObject.name = configs.Title;
         Type = configs.Type;
+        ID = GetNewId();
     }
 
     public void Put() => gameObject.SetActive(false);

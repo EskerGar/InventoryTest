@@ -8,6 +8,9 @@ public class BackPack : MonoBehaviour
     [SerializeField] private UnityEvent onPut;
     [SerializeField] private UnityEvent onGetOut;
     
+    public event Action<ObjectBehaviour[]> OnInventoryOpen;
+    public event Action OnInventoryClose;
+    
     private const int InventoryAmount = 3;
     private readonly ObjectBehaviour[] _inventory = new ObjectBehaviour[InventoryAmount];
     
@@ -20,6 +23,10 @@ public class BackPack : MonoBehaviour
             onGetOut?.Invoke();
         return obj;
     }
+
+    public void OpenInventory() => OnInventoryOpen?.Invoke(_inventory);
+
+    public void CloseInventory() => OnInventoryClose?.Invoke();
 
     private void PutInBackPack(ObjectBehaviour obj, int count)
     {
@@ -36,6 +43,16 @@ public class BackPack : MonoBehaviour
         objectBehaviour.Put();
         PutInBackPack(objectBehaviour, count);
 
+    }
+
+    private void OnMouseDrag()
+    {
+        OpenInventory();
+    }
+
+    private void OnMouseUp()
+    {
+        CloseInventory();
     }
 
     private int FindEmptySlot()
