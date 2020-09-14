@@ -1,15 +1,27 @@
 ﻿using UnityEngine;
 
+[RequireComponent(typeof(Rigidbody), typeof(PickUp))]
 public class ObjectBehaviour : MonoBehaviour
 {
     [SerializeField] private ObjectConfigs configs;
 
-    private ObjectConfigs.ObjectTypes _type;
+    public ObjectConfigs.ObjectTypes Type { get; private set; }
+    private PickUp _pickUp;
+    
 
     private void Start()
     {
         GetComponent<Rigidbody>().mass = configs.Weight;
+        _pickUp = GetComponent<PickUp>();
         gameObject.name = configs.Title;
-        _type = configs.Type;
+        Type = configs.Type;
+    }
+
+    public void Put() => gameObject.SetActive(false);
+
+    public void GetOut(GameObject picker)
+    {
+        gameObject.SetActive(true);
+        _pickUp.Equip(picker);
     }
 }

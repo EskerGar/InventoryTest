@@ -12,8 +12,8 @@ GameObject:
   - component: {fileID: 9177260565997371882}
   - component: {fileID: 89098263115052481}
   - component: {fileID: 7908132594847071998}
-  - component: {fileID: 5034464213961039352}
-  m_Layer: 8
+  - component: {fileID: 8663441346390687249}
+  m_Layer: 0
   m_Name: BackPack
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -29,7 +29,7 @@ Transform:
   m_GameObject: {fileID: 5238328222779108971}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 65.74499, y: 43.31214, z: -1.4087931}
-  m_LocalScale: {x: 0.5, y: 1.5879359, z: 0.67}
+  m_LocalScale: {x: 1, y: 3, z: 0.67}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -94,7 +94,7 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &5034464213961039352
+--- !u!114 &8663441346390687249
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -103,6 +103,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 5238328222779108971}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a7be7a960cfa98143a3471db583492ab, type: 3}
+  m_Script: {fileID: 11500000, guid: ac168c61de3a0c742b0fd0cce1e8c48e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  onPut:
+    m_PersistentCalls:
+      m_Calls: []
+  onGetOut:
+    m_PersistentCalls:
+      m_Calls: []
