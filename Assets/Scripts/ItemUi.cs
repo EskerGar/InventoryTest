@@ -17,18 +17,21 @@ public class ItemUi : MonoBehaviour
 
     public void ShowItem(ObjectConfigs configs, int newId)
     {
-        title.text = configs.Title;
-        weight.text = configs.Weight.ToString();
-        id.text = "ID: " + newId;
-        type.text = configs.Type.ToString();
+        SetInfo(
+            configs.Title, 
+            configs.Weight.ToString(), 
+            "ID: " + newId, 
+            configs.Type.ToString());
     }
 
-    public void CleanInfo()
+    public void CleanInfo() => SetInfo(default, default, default, default);
+
+    private void SetInfo(string title_, string weight_, string id_, string type_)
     {
-        title.text = default;
-        weight.text = default;
-        id.text = default;
-        type.text = default;
+        title.text = title_;
+        weight.text = weight_;
+        id.text = id_;
+        type.text = type_;
     }
     
 }

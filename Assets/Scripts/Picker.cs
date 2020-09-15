@@ -2,13 +2,15 @@
 
 public class Picker : MonoBehaviour
 {
-    private const float MaxRayDistance = 100f;
-    
     private LayerMask _pickUpLayer;
     private ObjectBehaviour _objectBehaviour;
+    private Camera _camera;
+    
+    private const float MaxRayDistance = 100f;
     
     private void Start()
     {
+        _camera = Camera.main;
        _pickUpLayer = LayerMask.GetMask(LayerMask.LayerToName(8));
     }
     
@@ -31,7 +33,7 @@ public class Picker : MonoBehaviour
 
     private void EquipObject()
     {
-        var ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+        var ray = _camera.ScreenPointToRay(Input.mousePosition);
         if (!Physics.Raycast(ray, out var hit, MaxRayDistance, _pickUpLayer)) return;
         
         if(_objectBehaviour == null)

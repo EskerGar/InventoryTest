@@ -52,10 +52,7 @@ public class BackPackUi : MonoBehaviour
         gameObject.SetActive(false);
     }
 
-    private void CleanItemInfo(int itemNumber)
-    {
-        itemUis[itemNumber].CleanInfo();
-    }
+    private void CleanItemInfo(int itemNumber) => itemUis[itemNumber].CleanInfo();
 
     private int GetSpotItem()
     {

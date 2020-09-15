@@ -1,5 +1,4 @@
-﻿using System;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class BackPackSpot : MonoBehaviour
 {
@@ -26,12 +25,17 @@ public class BackPackSpot : MonoBehaviour
         _objectBehaviour = obj.GetComponent<ObjectBehaviour>();
     }
 
+    private void Snapping()
+    {
+        var distCovered = (Time.time - _startTime) * Speed;
+        var fracJourney = distCovered / _distance;
+        _targetObj.position = Vector3.Lerp(_startTargetPosition, transform.position, fracJourney);  
+    }
+
     private void Update()
     {
         if(!_isSnap) return;
-        var distCovered = (Time.time - _startTime) * Speed;
-        var fracJourney = distCovered / _distance;
-        _targetObj.position = Vector3.Lerp(_startTargetPosition, transform.position, fracJourney);
+        Snapping();
         if (!(Vector3.Distance(_targetObj.position, transform.position) < .1f)) return;
         _isSnap = false;
         _objectBehaviour.Put();

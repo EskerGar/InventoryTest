@@ -1,6 +1,5 @@
 ﻿using UnityEngine;
 using static IdPool;
-using static ObjectConfigs;
 
 [RequireComponent(typeof(Rigidbody))]
 public class ObjectBehaviour : MonoBehaviour
