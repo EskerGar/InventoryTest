@@ -2,7 +2,7 @@
 using static IdPool;
 using static ObjectConfigs;
 
-[RequireComponent(typeof(Rigidbody), typeof(PickUp))]
+[RequireComponent(typeof(Rigidbody))]
 public class ObjectBehaviour : MonoBehaviour
 {
     [SerializeField] private ObjectConfigs configs;
@@ -11,22 +11,59 @@ public class ObjectBehaviour : MonoBehaviour
     public int ID { get; private set; }
     public ObjectConfigs GetConfigs => configs;
     
-    private PickUp _pickUp;
+    private Rigidbody _rigidbody;
+    private Collider _collider;
+    private Transform _transform;
+    private MeshRenderer _meshRenderer;
+
+    private const int PickUpLayer = 8;
 
     private void Start()
     {
-        GetComponent<Rigidbody>().mass = configs.Weight;
-        _pickUp = GetComponent<PickUp>();
+        _rigidbody = GetComponent<Rigidbody>();
+        _meshRenderer = GetComponent<MeshRenderer>();
+        _rigidbody.mass = configs.Weight;
+        _collider = GetComponent<Collider>();
+        _transform = transform;
         gameObject.name = configs.Title;
         Type = configs.Type;
         ID = GetNewId();
     }
 
-    public void Put() => gameObject.SetActive(false);
-
-    public void GetOut(GameObject picker)
+    public void Put() 
     {
-        gameObject.SetActive(true);
-        _pickUp.Equip(picker);
+        StopSpeed();
+        _meshRenderer.enabled = false;
+        gameObject.layer = default;
+    }
+
+    public void GetOut(Vector3 newPosition)
+    {
+        _meshRenderer.enabled = true;
+        gameObject.layer = PickUpLayer;
+        gameObject.transform.position = newPosition;
+        Drop();
+    }
+    
+    public void Equip(GameObject picker)
+    { 
+        _rigidbody.useGravity = false;
+        StopSpeed();
+        _collider.isTrigger = true;
+        _transform.parent = picker.transform;
+        _transform.position = picker.transform.position;
+    }
+
+    public void Drop()
+    {
+        _rigidbody.useGravity = true;
+        _collider.isTrigger = false;
+        _transform.parent = null;
+    }
+
+    private void StopSpeed()
+    {
+        _rigidbody.velocity = Vector3.zero;
+        _rigidbody.angularVelocity = Vector3.zero; 
     }
 }

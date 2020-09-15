@@ -2,11 +2,15 @@
 using System.Linq;
 using UnityEngine;
 using UnityEngine.Events;
+using Random = UnityEngine.Random;
 
 public class BackPack : MonoBehaviour
 {
+    [Serializable]
+    private class GetOutEvent : UnityEvent<ObjectBehaviour> {}
+
     [SerializeField] private UnityEvent onPut;
-    [SerializeField] private UnityEvent onGetOut;
+    [SerializeField] private GetOutEvent onGetOut;
     
     public event Action<ObjectBehaviour[]> OnInventoryOpen;
     public event Action OnInventoryClose;
@@ -15,18 +19,20 @@ public class BackPack : MonoBehaviour
     private readonly ObjectBehaviour[] _inventory = new ObjectBehaviour[InventoryAmount];
     
     
-    public ObjectBehaviour GetOutOfBackPack(int placeNumber)
+    public void GetOutOfBackPack(int placeNumber)
     {
-        if (placeNumber >= _inventory.Length) return null;
+        if (placeNumber >= _inventory.Length) return;
         var obj = _inventory[placeNumber];
-        if(obj != null)
-            onGetOut?.Invoke();
-        return obj;
+        _inventory[placeNumber] = null;
+        if(obj == null) return;
+        var randomPosition = Random.insideUnitCircle * 3;
+        obj.GetComponent<ObjectBehaviour>().GetOut(transform.position + new Vector3(randomPosition.x, 0f, randomPosition.y));
+        onGetOut?.Invoke(obj);
     }
 
-    public void OpenInventory() => OnInventoryOpen?.Invoke(_inventory);
+    private void OpenInventory() => OnInventoryOpen?.Invoke(_inventory);
 
-    public void CloseInventory() => OnInventoryClose?.Invoke();
+    private void CloseInventory() => OnInventoryClose?.Invoke();
 
     private void PutInBackPack(ObjectBehaviour obj, int count)
     {
@@ -45,15 +51,9 @@ public class BackPack : MonoBehaviour
 
     }
 
-    private void OnMouseDrag()
-    {
-        OpenInventory();
-    }
+    private void OnMouseDown() => OpenInventory();
 
-    private void OnMouseUp()
-    {
-        CloseInventory();
-    }
+    private void OnMouseUp() => CloseInventory();
 
     private int FindEmptySlot()
     {

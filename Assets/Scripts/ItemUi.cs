@@ -8,12 +8,11 @@ public class ItemUi : MonoBehaviour
     [SerializeField] private Text id;
     [SerializeField] private Text type;
 
+    public int ItemNumber { get; set; }
+
     private void Start()
     {
-        title.text = default;
-        weight.text = default;
-        id.text = default;
-        type.text = default;
+        CleanInfo();
     }
 
     public void ShowItem(ObjectConfigs configs, int newId)
@@ -23,4 +22,13 @@ public class ItemUi : MonoBehaviour
         id.text = "ID: " + newId;
         type.text = configs.Type.ToString();
     }
+
+    public void CleanInfo()
+    {
+        title.text = default;
+        weight.text = default;
+        id.text = default;
+        type.text = default;
+    }
+    
 }
