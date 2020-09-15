@@ -9,9 +9,11 @@ using Random = UnityEngine.Random;
 public class BackPack : MonoBehaviour
 {
     [Serializable]
-    private class GetOutEvent : UnityEvent<ObjectBehaviour> {}
+    private class GetOutEvent : UnityEvent<int> {}
+    [Serializable]
+    private class PutEvent : UnityEvent<int> {}
 
-    [SerializeField] private UnityEvent onPut;
+    [SerializeField] private PutEvent onPut;
     [SerializeField] private GetOutEvent onGetOut;
     [SerializeField] private List<BackPackSpot> spots;
 
@@ -30,7 +32,7 @@ public class BackPack : MonoBehaviour
         if(obj == null) return;
         var randomPosition = Random.insideUnitCircle * 3;
         obj.GetComponent<ObjectBehaviour>().GetOut(transform.position + new Vector3(randomPosition.x, 0f, randomPosition.y));
-        onGetOut?.Invoke(obj);
+        onGetOut?.Invoke(obj.ID);
     }
 
     private void OpenInventory() => OnInventoryOpen?.Invoke(_inventory);
@@ -42,7 +44,7 @@ public class BackPack : MonoBehaviour
         _inventory[count] = obj;
         var spot = FindSpot(obj.Type);
         spot.StartSnapping(obj.transform);
-        onPut?.Invoke();
+        onPut?.Invoke(obj.ID);
     }
     
     private BackPackSpot FindSpot(ObjectTypes type)

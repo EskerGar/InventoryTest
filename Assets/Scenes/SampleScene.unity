@@ -280,7 +280,12 @@ PrefabInstance:
     - target: {fileID: 8663441346390687249, guid: 821a08c6fe6ae724cb0daff038f40b8a,
         type: 3}
       propertyPath: onGetOut.m_PersistentCalls.m_Calls.Array.size
-      value: 0
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8663441346390687249, guid: 821a08c6fe6ae724cb0daff038f40b8a,
+        type: 3}
+      propertyPath: onPut.m_PersistentCalls.m_Calls.Array.size
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8663441346390687249, guid: 821a08c6fe6ae724cb0daff038f40b8a,
         type: 3}
@@ -321,11 +326,11 @@ PrefabInstance:
         type: 3}
       propertyPath: onGetOut.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
-      objectReference: {fileID: 450503461}
+      objectReference: {fileID: 1865103385}
     - target: {fileID: 8663441346390687249, guid: 821a08c6fe6ae724cb0daff038f40b8a,
         type: 3}
       propertyPath: onGetOut.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: EquipObject
+      value: SendGetOutEvent
       objectReference: {fileID: 0}
     - target: {fileID: 8663441346390687249, guid: 821a08c6fe6ae724cb0daff038f40b8a,
         type: 3}
@@ -342,6 +347,31 @@ PrefabInstance:
       propertyPath: endPos
       value: 
       objectReference: {fileID: 880006801}
+    - target: {fileID: 8663441346390687249, guid: 821a08c6fe6ae724cb0daff038f40b8a,
+        type: 3}
+      propertyPath: onPut.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8663441346390687249, guid: 821a08c6fe6ae724cb0daff038f40b8a,
+        type: 3}
+      propertyPath: onPut.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 8663441346390687249, guid: 821a08c6fe6ae724cb0daff038f40b8a,
+        type: 3}
+      propertyPath: onPut.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 1865103385}
+    - target: {fileID: 8663441346390687249, guid: 821a08c6fe6ae724cb0daff038f40b8a,
+        type: 3}
+      propertyPath: onPut.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: SendPutEvent
+      objectReference: {fileID: 0}
+    - target: {fileID: 8663441346390687249, guid: 821a08c6fe6ae724cb0daff038f40b8a,
+        type: 3}
+      propertyPath: onPut.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 821a08c6fe6ae724cb0daff038f40b8a, type: 3}
 --- !u!1001 &446532529
@@ -1065,6 +1095,49 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 5
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1865103384
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1865103386}
+  - component: {fileID: 1865103385}
+  m_Layer: 0
+  m_Name: PostSender
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1865103385
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1865103384}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d54587307deeae8458e6f090fd36329f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!4 &1865103386
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1865103384}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -5.5114875, y: -1.9772229, z: -7.6521835}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 10
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &2141748413
 GameObject:
