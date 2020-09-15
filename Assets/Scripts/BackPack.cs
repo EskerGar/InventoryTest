@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Collections;
+using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 using UnityEngine.Events;
@@ -11,7 +13,8 @@ public class BackPack : MonoBehaviour
 
     [SerializeField] private UnityEvent onPut;
     [SerializeField] private GetOutEvent onGetOut;
-    
+    [SerializeField] private List<BackPackSpot> spots;
+
     public event Action<ObjectBehaviour[]> OnInventoryOpen;
     public event Action OnInventoryClose;
     
@@ -37,7 +40,14 @@ public class BackPack : MonoBehaviour
     private void PutInBackPack(ObjectBehaviour obj, int count)
     {
         _inventory[count] = obj;
+        var spot = FindSpot(obj.Type);
+        spot.StartSnapping(obj.transform);
         onPut?.Invoke();
+    }
+    
+    private BackPackSpot FindSpot(ObjectTypes type)
+    {
+        return spots.FirstOrDefault(spot => spot.Type == type);
     }
 
     private void OnCollisionEnter(Collision other)
@@ -46,7 +56,6 @@ public class BackPack : MonoBehaviour
         if (objectBehaviour == null) return;
         var count = FindEmptySlot();
         if (count == -1 || CheckSameObject(objectBehaviour)) return;
-        objectBehaviour.Put();
         PutInBackPack(objectBehaviour, count);
 
     }

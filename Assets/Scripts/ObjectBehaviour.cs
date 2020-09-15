@@ -33,7 +33,6 @@ public class ObjectBehaviour : MonoBehaviour
     public void Put() 
     {
         StopSpeed();
-        _meshRenderer.enabled = false;
         gameObject.layer = default;
     }
 
@@ -46,10 +45,8 @@ public class ObjectBehaviour : MonoBehaviour
     }
     
     public void Equip(GameObject picker)
-    { 
-        _rigidbody.useGravity = false;
+    {
         StopSpeed();
-        _collider.isTrigger = true;
         _transform.parent = picker.transform;
         _transform.position = picker.transform.position;
     }
@@ -65,5 +62,7 @@ public class ObjectBehaviour : MonoBehaviour
     {
         _rigidbody.velocity = Vector3.zero;
         _rigidbody.angularVelocity = Vector3.zero; 
+        _rigidbody.useGravity = false;
+        _collider.isTrigger = true;
     }
 }

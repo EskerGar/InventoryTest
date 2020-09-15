@@ -10,12 +10,10 @@ public class ObjectConfigs : ScriptableObject
     public float Weight => weight;
     public string Title => title;
     public ObjectTypes Type => types;
-
-    public enum ObjectTypes
-    {
-        FirstType,
-        SecondType,
-        ThirdType
-    }
-    
+}
+public enum ObjectTypes
+{
+    FirstType,
+    SecondType,
+    ThirdType
 }

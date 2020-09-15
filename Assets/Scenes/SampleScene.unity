@@ -280,7 +280,7 @@ PrefabInstance:
     - target: {fileID: 8663441346390687249, guid: 821a08c6fe6ae724cb0daff038f40b8a,
         type: 3}
       propertyPath: onGetOut.m_PersistentCalls.m_Calls.Array.size
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8663441346390687249, guid: 821a08c6fe6ae724cb0daff038f40b8a,
         type: 3}
@@ -332,6 +332,16 @@ PrefabInstance:
       propertyPath: onGetOut.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
       value: UnityEngine.Object, UnityEngine
       objectReference: {fileID: 0}
+    - target: {fileID: 8663441346390687249, guid: 821a08c6fe6ae724cb0daff038f40b8a,
+        type: 3}
+      propertyPath: startPos
+      value: 
+      objectReference: {fileID: 2141748416}
+    - target: {fileID: 8663441346390687249, guid: 821a08c6fe6ae724cb0daff038f40b8a,
+        type: 3}
+      propertyPath: endPos
+      value: 
+      objectReference: {fileID: 880006801}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 821a08c6fe6ae724cb0daff038f40b8a, type: 3}
 --- !u!1001 &446532529
@@ -620,6 +630,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ac168c61de3a0c742b0fd0cce1e8c48e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!4 &880006801 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 1368920071067604656, guid: 5e138b96f3f94bf4faa1bbc81416961f,
+    type: 3}
+  m_PrefabInstance: {fileID: 446532529}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &938707071
 GameObject:
   m_ObjectHideFlags: 0
